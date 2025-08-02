@@ -6,10 +6,11 @@
   <title>Your Name — Portfolio</title>
   <style>
     :root {
-      --brand-color: #4a90e2;
       --bg-color: #f9f9f9;
       --text-color: #333;
-      --accent: #ff6f61;
+      --accent1: #ff6f61;    /* Coral */
+      --accent2: #6b5b95;    /* Indigo */
+      --accent3: #88b04b;    /* Olive */
       --transition: 0.3s ease-in-out;
       --max-width: 1000px;
       --radius: 8px;
@@ -24,23 +25,23 @@
     }
     header {
       position: fixed; top: 0; left: 0; width: 100%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(5px);
       padding: 1rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 1000;
     }
-    header .logo { font-size: 1.4rem; font-weight: bold; color: var(--brand-color);}
+    .logo { font-size: 1.4rem; font-weight: bold; background: linear-gradient(45deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; color: transparent; }
     nav a {
       margin-left: 1.5rem; color: var(--text-color);
       text-decoration: none; position: relative;
       transition: color var(--transition);
     }
-    nav a:hover { color: var(--brand-color); }
+    nav a:hover { color: var(--accent2); }
     nav a::after {
       content: ''; position: absolute; left: 0; bottom: -4px;
-      width: 0; height: 2px; background: var(--brand-color);
+      width: 0; height: 2px; background: var(--accent2);
       transition: width var(--transition);
     }
     nav a:hover::after { width: 100%; }
@@ -50,42 +51,28 @@
     .hero {
       display: flex; flex-direction: column; align-items: center;
       text-align: center; padding-top: 160px; padding-bottom: 160px;
-      background: url('https://source.unsplash.com/1600x900/?code,office') center/cover no-repeat;
-      color: white;
-      position: relative;
+      background: url('https://source.unsplash.com/1600x900/?kitchen,analytics') center/cover no-repeat;
+      color: white; position: relative;
     }
     .hero::after {
-      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
     }
     .hero > * { position: relative; z-index: 1; }
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
     .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; }
     .btn {
       display: inline-block; padding: 0.8rem 1.5rem;
-      background: var(--accent); color: white;
-      border: none; border-radius: var(--radius);
+      background: linear-gradient(45deg, var(--accent1), var(--accent3));
+      color: white; border: none; border-radius: var(--radius);
       cursor: pointer; transition: transform var(--transition);
       text-decoration: none;
     }
     .btn:hover { transform: translateY(-3px); }
-    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-    .about img { width: 100%; border-radius: var(--radius); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem; }
-    .skill {
-      background: white; padding: 1rem; border-radius: var(--radius);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: transform var(--transition);
+    .projects { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
+      gap: 1.5rem; 
     }
-    .skill:hover { transform: translateY(-5px); }
-    .skill h3 { margin-bottom: 0.5rem; }
-    .progress-bar {
-      background: #e0e0e0; border-radius: var(--radius); overflow: hidden;
-    }
-    .progress {
-      height: 8px; width: 0; background: var(--brand-color);
-      transition: width 1s ease-out;
-    }
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
     .project {
       position: relative; overflow: hidden; border-radius: var(--radius);
       cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -96,12 +83,12 @@
     .project:hover img { transform: scale(1.05); }
     .project .overlay {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,0.5); opacity: 0;
-      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--accent2), var(--accent1));
+      opacity: 0; display: flex; align-items: center; justify-content: center;
       color: white; font-size: 1.2rem; transition: opacity var(--transition);
+      text-align: center; padding: 1rem;
     }
-    .project:hover .overlay { opacity: 1; }
-    /* Modal */
+    .project:hover .overlay { opacity: 0.9; }
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center;
@@ -112,25 +99,11 @@
       max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative;
     }
     .modal-close {
-      position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .contact form {
-      display: grid; gap: 1rem; max-width: 500px; margin: 0 auto;
-    }
-    .contact input, .contact textarea {
-      padding: 0.8rem; border: 1px solid #ccc; border-radius: var(--radius);
-      width: 100%; font-size: 1rem;
-    }
-    .contact input:focus, .contact textarea:focus {
-      outline: none; border-color: var(--brand-color);
-    }
-    footer {
-      text-align: center; padding: 1.5rem 0;
-      background: #fff; color: #666; font-size: 0.9rem;
+      position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer;
     }
     @media(max-width: 768px) {
-      .about { grid-template-columns: 1fr; text-align: center; }
+      section { padding-top: 120px; }
+      .projects { grid-template-columns: 1fr; }
       header { padding: 1rem; }
       nav a { margin-left: 1rem; }
     }
@@ -141,63 +114,30 @@
   <header>
     <div class="logo">Your Name</div>
     <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section class="hero" id="hero">
-    <h1>Hello, I’m Your Name</h1>
-    <p>I’m a Front-End Developer crafting engaging and accessible web experiences.</p>
-    <a href="#projects" class="btn">View My Work</a>
-  </section>
-
-  <section id="about" class="about">
-    <img src="https://source.unsplash.com/400x400/?portrait" alt="Your Portrait"/>
-    <div>
-      <h2>About Me</h2>
-      <p>I specialize in Data Science as a Computer Science major.</p>
-      <a href="#contact" class="btn">Hire Me</a>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2 style="text-align:center; margin-bottom:1rem;">Skills</h2>
-    <div class="skills">
-      <div class="skill">
-        <h3>HTML &amp; CSS</h3>
-        <div class="progress-bar"><div class="progress" data-progress="90%"></div></div>
-      </div>
-      <div class="skill">
-        <h3>JavaScript</h3>
-        <div class="progress-bar"><div class="progress" data-progress="85%"></div></div>
-      </div>
-      <div class="skill">
-        <h3>React</h3>
-        <div class="progress-bar"><div class="progress" data-progress="80%"></div></div>
-      </div>
-      <div class="skill">
-        <h3>UI/UX Design</h3>
-        <div class="progress-bar"><div class="progress" data-progress="70%"></div></div>
-      </div>
-    </div>
+    <h1>Hi, I’m Your Name</h1>
+    <p>I build data-driven web tools and visualizations.</p>
+    <a href="#projects" class="btn">See My Work</a>
   </section>
 
   <section id="projects">
-    <h2 style="text-align:center; margin-bottom:1rem;">Projects</h2>
+    <h2 style="text-align:center; margin-bottom:1rem;">Featured Project</h2>
     <div class="projects">
-      <!-- repeat project blocks as needed -->
-      <div class="project" data-title="Project One" data-desc="A cool project using X,Y,Z.">
-        <img src="https://source.unsplash.com/600x400/?website,app" alt="Project One"/>
-        <div class="overlay">Project One</div>
+      <div class="project" 
+           data-title="Recipe Site Traffic Analyzer" 
+           data-desc="A full-stack analytics dashboard that tracks pageviews, user engagement, and peak traffic times for a recipe website, built with Node.js, Express, Chart.js, and MongoDB.">
+        <img src="https://source.unsplash.com/600x400/?analytics,food" alt="Recipe Site Traffic Analyzer"/>
+        <div class="overlay">
+          <a href="https://github.com/Rohulk/RecipeSiteTraffic" target="_blank" style="color:white; text-decoration:underline;">
+            View on GitHub
+          </a>
+        </div>
       </div>
-      <div class="project" data-title="Project Two" data-desc="An awesome app built with A,B,C.">
-        <img src="https://source.unsplash.com/600x400/?code,app" alt="Project Two"/>
-        <div class="overlay">Project Two</div>
-      </div>
-      <!-- ... -->
     </div>
   </section>
 
@@ -210,63 +150,28 @@
     </div>
   </div>
 
-  <section id="contact" class="contact">
-    <h2 style="text-align:center; margin-bottom:1rem;">Get In Touch</h2>
-    <form onsubmit="return validateForm()">
-      <input type="text" id="name" placeholder="Your Name" required/>
-      <input type="email" id="email" placeholder="Your Email" required/>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
+  <section id="contact" style="padding:60px 2rem; max-width:var(--max-width); margin:0 auto; text-align:center;">
+    <h2>Get In Touch</h2>
+    <p>Email me at <a href="mailto:you@example.com">you@example.com</a></p>
   </section>
 
-  <footer>
-    &copy; Khai Kieu
+  <footer style="text-align:center; padding:1.5rem 0; background:#fff; color:#666; font-size:0.9rem;">
+    &copy; 2025 Your Name
   </footer>
 
   <script>
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const skills = document.querySelectorAll('.progress');
-      const revealThreshold = window.innerHeight * 0.8;
-
-      function revealSkills() {
-        skills.forEach(bar => {
-          const { top } = bar.getBoundingClientRect();
-          if (top < revealThreshold) {
-            bar.style.width = bar.dataset.progress;
-          }
-        });
-      }
-      window.addEventListener('scroll', revealSkills);
-      revealSkills();
-
-      // Project lightbox modal
-      const modal = document.getElementById('modal');
-      const titleEl = document.getElementById('modal-title');
-      const descEl = document.getElementById('modal-desc');
-      document.querySelectorAll('.project').forEach(p => {
-        p.addEventListener('click', () => {
-          titleEl.textContent = p.dataset.title;
-          descEl.textContent = p.dataset.desc;
-          modal.style.display = 'flex';
-        });
-      });
-      document.querySelector('.modal-close').onclick = () => modal.style.display = 'none';
-      window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
-    });
-
-    function validateForm() {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const msg = document.getElementById('message').value.trim();
-      if (!name || !email || !msg) {
-        alert('Please fill in all fields before sending.');
-        return false;
-      }
-      alert('Thanks for your message, ' + name + '! I’ll get back to you soon.');
-      return false; 
-    }
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const titleEl = document.getElementById('modal-title');
+    const descEl  = document.getElementById('modal-desc');
+    document.querySelector('.project').onclick = () => {
+      const p = document.querySelector('.project');
+      titleEl.textContent = p.dataset.title;
+      descEl.textContent  = p.dataset.desc;
+      modal.style.display = 'flex';
+    };
+    document.querySelector('.modal-close').onclick = () => modal.style.display = 'none';
+    window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
   </script>
 </body>
 </html>
