@@ -1,96 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Portfolio</title>
+  <style>
+    :root {
+      --brand-color: #4a90e2;
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --accent: #ff6f61;
+      --transition: 0.3s ease-in-out;
+      --max-width: 1000px;
+      --radius: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-color);
+      background: var(--bg-color);
+      line-height: 1.6;
+    }
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(5px);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    header .logo { font-size: 1.4rem; font-weight: bold; color: var(--brand-color);}
+    nav a {
+      margin-left: 1.5rem; color: var(--text-color);
+      text-decoration: none; position: relative;
+      transition: color var(--transition);
+    }
+    nav a:hover { color: var(--brand-color); }
+    nav a::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 2px; background: var(--brand-color);
+      transition: width var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    section {
+      padding: 100px 2rem 60px; max-width: var(--max-width); margin: 0 auto;
+    }
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding-top: 160px; padding-bottom: 160px;
+      background: url('https://source.unsplash.com/1600x900/?code,office') center/cover no-repeat;
+      color: white;
+      position: relative;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; }
+    .btn {
+      display: inline-block; padding: 0.8rem 1.5rem;
+      background: var(--accent); color: white;
+      border: none; border-radius: var(--radius);
+      cursor: pointer; transition: transform var(--transition);
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .about img { width: 100%; border-radius: var(--radius); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem; }
+    .skill {
+      background: white; padding: 1rem; border-radius: var(--radius);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform var(--transition);
+    }
+    .skill:hover { transform: translateY(-5px); }
+    .skill h3 { margin-bottom: 0.5rem; }
+    .progress-bar {
+      background: #e0e0e0; border-radius: var(--radius); overflow: hidden;
+    }
+    .progress {
+      height: 8px; width: 0; background: var(--brand-color);
+      transition: width 1s ease-out;
+    }
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
+    .project {
+      position: relative; overflow: hidden; border-radius: var(--radius);
+      cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .project img {
+      width: 100%; display: block; transition: transform var(--transition);
+    }
+    .project:hover img { transform: scale(1.05); }
+    .project .overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.5); opacity: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.2rem; transition: opacity var(--transition);
+    }
+    .project:hover .overlay { opacity: 1; }
+    /* Modal */
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: white; padding: 2rem; border-radius: var(--radius);
+      max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .contact form {
+      display: grid; gap: 1rem; max-width: 500px; margin: 0 auto;
+    }
+    .contact input, .contact textarea {
+      padding: 0.8rem; border: 1px solid #ccc; border-radius: var(--radius);
+      width: 100%; font-size: 1rem;
+    }
+    .contact input:focus, .contact textarea:focus {
+      outline: none; border-color: var(--brand-color);
+    }
+    footer {
+      text-align: center; padding: 1.5rem 0;
+      background: #fff; color: #666; font-size: 0.9rem;
+    }
+    @media(max-width: 768px) {
+      .about { grid-template-columns: 1fr; text-align: center; }
+      header { padding: 1rem; }
+      nav a { margin-left: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Your Name</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h1>Hello, I’m Your Name</h1>
+    <p>I’m a Front-End Developer crafting engaging and accessible web experiences.</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <section id="about" class="about">
+    <img src="https://source.unsplash.com/400x400/?portrait" alt="Your Portrait"/>
+    <div>
+      <h2>About Me</h2>
+      <p>I specialize in Data Science as a Computer Science major.</p>
+      <a href="#contact" class="btn">Hire Me</a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 style="text-align:center; margin-bottom:1rem;">Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <h3>HTML &amp; CSS</h3>
+        <div class="progress-bar"><div class="progress" data-progress="90%"></div></div>
+      </div>
+      <div class="skill">
+        <h3>JavaScript</h3>
+        <div class="progress-bar"><div class="progress" data-progress="85%"></div></div>
+      </div>
+      <div class="skill">
+        <h3>React</h3>
+        <div class="progress-bar"><div class="progress" data-progress="80%"></div></div>
+      </div>
+      <div class="skill">
+        <h3>UI/UX Design</h3>
+        <div class="progress-bar"><div class="progress" data-progress="70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 style="text-align:center; margin-bottom:1rem;">Projects</h2>
+    <div class="projects">
+      <!-- repeat project blocks as needed -->
+      <div class="project" data-title="Project One" data-desc="A cool project using X,Y,Z.">
+        <img src="https://source.unsplash.com/600x400/?website,app" alt="Project One"/>
+        <div class="overlay">Project One</div>
+      </div>
+      <div class="project" data-title="Project Two" data-desc="An awesome app built with A,B,C.">
+        <img src="https://source.unsplash.com/600x400/?code,app" alt="Project Two"/>
+        <div class="overlay">Project Two</div>
+      </div>
+      <!-- ... -->
+    </div>
+  </section>
+
+  <!-- Modal for project details -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <section id="contact" class="contact">
+    <h2 style="text-align:center; margin-bottom:1rem;">Get In Touch</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Your Name" required/>
+      <input type="email" id="email" placeholder="Your Email" required/>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; Khai Kieu
+  </footer>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const skills = document.querySelectorAll('.progress');
+      const revealThreshold = window.innerHeight * 0.8;
+
+      function revealSkills() {
+        skills.forEach(bar => {
+          const { top } = bar.getBoundingClientRect();
+          if (top < revealThreshold) {
+            bar.style.width = bar.dataset.progress;
+          }
+        });
+      }
+      window.addEventListener('scroll', revealSkills);
+      revealSkills();
+
+      // Project lightbox modal
+      const modal = document.getElementById('modal');
+      const titleEl = document.getElementById('modal-title');
+      const descEl = document.getElementById('modal-desc');
+      document.querySelectorAll('.project').forEach(p => {
+        p.addEventListener('click', () => {
+          titleEl.textContent = p.dataset.title;
+          descEl.textContent = p.dataset.desc;
+          modal.style.display = 'flex';
+        });
+      });
+      document.querySelector('.modal-close').onclick = () => modal.style.display = 'none';
+      window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+    });
+
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if (!name || !email || !msg) {
+        alert('Please fill in all fields before sending.');
+        return false;
+      }
+      alert('Thanks for your message, ' + name + '! I’ll get back to you soon.');
+      return false; 
+    }
+  </script>
+</body>
 </html>
