@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khai Kieu :) - Data Science Addict</title>
+    <title>Khai Kieu - Data Science Addict</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6C63FF;
-            --secondary: #FF6584;
+            --primary: #9C27B0;
+            --secondary: #E91E63;
             --dark: #2D3748;
-            --light: #F7FAFC;
-            --accent: #48BB78;
+            --light: #FCE4EC;
+            --accent: #FF9800;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         }
         
@@ -36,6 +36,7 @@
             padding: 2rem 0;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
         
         .header-content {
@@ -85,13 +86,21 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
             margin-bottom: 3rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+            animation: fadeInUp 0.5s forwards;
+            animation-delay: calc(var(--order) * 0.1s);
+        }
+        
+        .project-card.visible {
             transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 1;
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
         
         .project-header {
@@ -119,12 +128,13 @@
             margin-top: 1rem;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+            transition: all 0.3s ease;
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
         }
         
         .btn-outline {
@@ -137,14 +147,6 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
         }
         
         .animated-bg {
@@ -201,6 +203,22 @@
             }
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -209,12 +227,50 @@
         }
         
         .tech-item {
-            background: rgba(108, 99, 255, 0.1);
+            background: rgba(156, 39, 176, 0.1);
             color: var(--primary);
             padding: 0.3rem 0.8rem;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: scale(1.1);
+            background: rgba(156, 39, 176, 0.2);
+        }
+        
+        .connect-section {
+            text-align: center;
+            margin: 4rem 0;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.7);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .linkedin-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            color: #0A66C2;
+        }
+        
+        .linkedin-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
         
         @media (max-width: 768px) {
@@ -259,7 +315,7 @@
     </header>
     
     <main class="container">
-        <section class="project-card">
+        <section class="project-card" style="--order: 1">
             <div class="project-header">
                 <h2>Recipe Site Traffic Analysis</h2>
             </div>
@@ -291,45 +347,34 @@
             </div>
         </section>
         
-        <section style="text-align: center; margin-top: 4rem;">
+        <section style="text-align: center; margin-top: 4rem; animation: fadeIn 1s ease-out;">
             <h2 style="margin-bottom: 1.5rem;">About Me</h2>
             <p style="max-width: 800px; margin: 0 auto;">
                 There is data everywhere
             </p>
         </section>
 
-        <!-- LinkedIn Section Added Here -->
-        <section style="text-align: center; margin-top: 2rem;">
-            <h2 style="margin-bottom: 1.5rem;">Connect With Me</h2>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
-                <!-- LinkedIn logo SVG - replace with img tag if you prefer -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#0A66C2">
+        <section class="connect-section">
+            <h2 style="margin-bottom: 1.5rem;">Let's Connect</h2>
+            <a href="https://www.linkedin.com/in/addictedtodata/" class="linkedin-link" target="_blank">
+                <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
-                <!-- Replace # with your actual LinkedIn URL -->
-                <a href="#" target="_blank" style="color: var(--primary); font-weight: bold; text-decoration: none;">
-                    Visit My LinkedIn Profile
-                </a>
-            </div>
+                Connect on LinkedIn
+            </a>
         </section>
     </main>
     
-    <footer>
-        <p>&copy; Khai Kieu - Data Science Addict</p>
-    </footer>
-    
     <script>
-        // Dynamic background elements
         document.addEventListener('DOMContentLoaded', function() {
             // Add more floating elements
             const animatedBg = document.querySelector('.animated-bg');
-            const colors = ['#6C63FF', '#FF6584', '#48BB78', '#F6E05E', '#4299E1'];
+            const colors = ['#9C27B0', '#E91E63', '#FF9800', '#F6E05E', '#4299E1'];
             
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 8; i++) {
                 const circle = document.createElement('div');
                 circle.classList.add('circle');
                 
-                // Random properties
                 const size = Math.random() * 200 + 50;
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
@@ -348,31 +393,28 @@
                 animatedBg.appendChild(circle);
             }
             
-            // Parallax effect for header
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.pageYOffset;
-                const header = document.querySelector('header');
-                header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-                
-                // Animate project cards when they come into view
+            // Animate elements when they come into view
+            const animateOnScroll = function() {
                 const projectCards = document.querySelectorAll('.project-card');
+                
                 projectCards.forEach(card => {
                     const cardPosition = card.getBoundingClientRect().top;
                     const screenPosition = window.innerHeight / 1.3;
                     
                     if (cardPosition < screenPosition) {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
+                        card.classList.add('visible');
                     }
                 });
-            });
+            };
             
-            // Initial animation for project cards
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = `translateY(${20 * (index + 1)}px)`;
-                card.style.transitionDelay = `${index * 0.1}s`;
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Parallax effect for header
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                const header = document.querySelector('header');
+                header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
             });
         });
     </script>
