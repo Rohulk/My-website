@@ -28,6 +28,27 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: none;
+        }
+        
+        /* Binary Digits Trail */
+        .binary-digit {
+            position: absolute;
+            color: #FF69B4; /* Pink color */
+            font-size: 16px;
+            font-weight: bold;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.8;
+            animation: fall linear forwards;
+            z-index: 9999;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100px);
+                opacity: 0;
+            }
         }
         
         header {
@@ -614,6 +635,31 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let lastTime = 0;
+            const delay = 50; 
+            
+            document.addEventListener('mousemove', function(e) {
+                const currentTime = Date.now();
+                if (currentTime - lastTime > delay) {
+                    createBinaryDigit(e.clientX, e.clientY);
+                    lastTime = currentTime;
+                }
+            });
+            
+            function createBinaryDigit(x, y) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = Math.random() > 0.5 ? '0' : '1';
+                digit.style.left = `${x + (Math.random() * 20 - 10)}px`;
+                digit.style.top = `${y}px`;
+                digit.style.animationDuration = `${Math.random() * 1 + 1}s`; 
+                
+                document.body.appendChild(digit);
+                
+                setTimeout(() => {
+                    digit.remove();
+                }, 1000);
+            }
             
             const animatedBg = document.querySelector('.animated-bg');
             const colors = ['#9C27B0', '#E91E63', '#FF9800', '#F6E05E', '#4299E1'];
