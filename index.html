@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khai Kieu - Data Science Addict</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4CAF50; 
@@ -13,6 +13,7 @@
             --light: #F1F8E9; 
             --accent: #FFC107; 
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --pixel-size: 4px;
         }
         
         * {
@@ -28,6 +29,10 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
         
         .binary-digit {
@@ -59,6 +64,7 @@
             padding: 2rem 0;
             position: relative;
             overflow: hidden;
+            border-bottom: 4px solid var(--dark);
         }
         
         .header-content {
@@ -87,6 +93,8 @@
         
         .header-text {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .header-text h1 {
@@ -94,6 +102,11 @@
             transform: translateY(20px);
             animation: fadeInUp 1s ease-out forwards;
             animation-delay: 0.5s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            text-shadow: 4px 4px 0px var(--dark);
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
         }
         
         .header-text .tagline {
@@ -101,6 +114,9 @@
             transform: translateY(20px);
             animation: fadeInUp 1s ease-out forwards;
             animation-delay: 0.7s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            text-shadow: 2px 2px 0px var(--dark);
         }
         
         .header-bg {
@@ -138,13 +154,35 @@
         
         .project-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
             margin-bottom: 3rem;
             transform: translateY(20px);
             opacity: 0;
             transition: transform 0.8s ease, opacity 1.2s ease, box-shadow 0.3s ease;
+            border: 4px solid var(--dark);
+            position: relative;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary),
+                var(--primary) 10px,
+                var(--secondary) 10px,
+                var(--secondary) 20px
+            );
         }
         
         .project-card.visible {
@@ -155,6 +193,12 @@
         .project-card:hover {
             transform: translateY(-5px) scale(1.01);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: pixelGlow 0.5s ease-in-out;
+        }
+        
+        @keyframes pixelGlow {
+            0%, 100% { box-shadow: 0 0 0px rgba(76, 175, 80, 0.8); }
+            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
         }
         
         .project-header {
@@ -164,20 +208,26 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            border-bottom: 4px solid var(--dark);
         }
         
-        /* Make the Recipe Site Traffic logo smaller */
-        .project-header img[src*="discordapp.com"] {
-            width: 20px !important;
-            height: 20px !important;
-            object-fit: contain !important;
+        .project-header img {
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .project-header:hover img {
+            transform: scale(1.2) rotate(5deg);
         }
         
         .project-title {
-            font-family: 'Comic Neue', cursive;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+            font-weight: 400;
+            font-size: 1.2rem;
             margin: 0;
+            text-shadow: 2px 2px 0px var(--dark);
         }
         
         .project-content {
@@ -186,18 +236,39 @@
         
         .project-description {
             margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
         /* Certifications Panel */
         .certifications-panel {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
             transform: translateY(20px);
             opacity: 0;
             transition: transform 0.8s ease, opacity 1.2s ease;
+            border: 4px solid var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .certifications-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary),
+                var(--primary) 10px,
+                var(--secondary) 10px,
+                var(--secondary) 20px
+            );
         }
         
         .certifications-panel.visible {
@@ -206,10 +277,11 @@
         }
         
         .certifications-panel h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Press Start 2P', cursive;
             color: var(--primary);
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 0px var(--dark);
         }
         
         .certifications-grid {
@@ -224,13 +296,22 @@
             flex-direction: column;
             align-items: center;
             width: 150px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .certification-item:hover {
+            transform: translateY(-5px) scale(1.05);
         }
         
         .certification-item img {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
             margin-bottom: 0.5rem;
+            border: 2px solid var(--dark);
+            background: white;
+            padding: 5px;
         }
         
         .certification-item a {
@@ -240,11 +321,14 @@
             font-weight: bold;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
         }
         
         .certification-item a:hover {
             color: var(--secondary);
             transform: translateY(-2px);
+            text-shadow: 1px 1px 0px var(--dark);
         }
         
         /* Education Panels */
@@ -259,13 +343,31 @@
         
         .education-panel {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 300px;
             opacity: 0;
             transition: all 1s ease-out;
             position: relative;
             right: -100%;
+            border: 4px solid var(--dark);
+            overflow: hidden;
+        }
+        
+        .education-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary),
+                var(--primary) 10px,
+                var(--secondary) 10px,
+                var(--secondary) 20px
+            );
         }
         
         .education-panel.visible {
@@ -276,12 +378,14 @@
         .education-panel:hover {
             transform: translateY(-5px) scale(1.01);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: pixelGlow 0.5s ease-in-out;
         }
         
         .education-panel .project-header {
             flex-direction: column;
             text-align: center;
             padding: 1rem;
+            border-bottom: 4px solid var(--dark);
         }
         
         .education-panel .project-header img {
@@ -296,11 +400,12 @@
         }
         
         .education-title {
-            font-family: 'Comic Neue', cursive;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+            font-weight: 400;
+            font-size: 1rem;
             margin: 0;
             line-height: 1.2;
+            text-shadow: 2px 2px 0px var(--dark);
         }
         
         .btn {
@@ -308,19 +413,45 @@
             padding: 0.8rem 1.5rem;
             background: var(--gradient);
             color: white;
-            border-radius: 50px;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             margin-top: 1rem;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 0px var(--dark);
             transition: all 0.3s ease;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--dark);
         }
         
         .btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0px var(--dark);
+        }
+        
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px var(--dark);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
         }
         
         .btn-outline {
@@ -328,11 +459,13 @@
             border: 2px solid var(--primary);
             color: var(--primary);
             margin-left: 1rem;
+            box-shadow: 0 4px 0px var(--dark);
         }
         
         .btn-outline:hover {
             background: var(--primary);
             color: white;
+            box-shadow: 0 7px 0px var(--dark);
         }
         
         .animated-bg {
@@ -416,15 +549,19 @@
             background: rgba(76, 175, 80, 0.1);
             color: var(--primary);
             padding: 0.3rem 0.8rem;
-            border-radius: 50px;
+            border-radius: 4px;
             font-size: 0.8rem;
             font-weight: bold;
             transition: all 0.3s ease;
+            border: 1px solid var(--dark);
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: 0 2px 0px var(--dark);
         }
         
         .tech-item:hover {
             transform: scale(1.1);
             background: rgba(76, 175, 80, 0.2);
+            box-shadow: 0 3px 0px var(--dark);
         }
         
         .connect-section {
@@ -441,15 +578,17 @@
             font-weight: bold;
             text-decoration: none;
             padding: 0.8rem 1.5rem;
-            border-radius: 50px;
+            border-radius: 4px;
             transition: all 0.3s ease;
             background: rgba(255,255,255,0.7);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 0px var(--dark);
+            border: 2px solid var(--dark);
+            font-family: 'Press Start 2P', cursive;
         }
         
         .linkedin-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 7px 0px var(--dark);
             color: #0A66C2;
         }
         
@@ -462,8 +601,6 @@
         /* Pusheen Cat */
         .pusheen-cat {
             position: fixed;
-            top: 20px;
-            right: 20px;
             width: 80px;
             height: 80px;
             z-index: 1000;
@@ -490,6 +627,46 @@
             75% { transform: rotate(-10deg) translateY(-5px); }
         }
         
+        /* 8-bit Modal */
+        .modal-8bit {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border: 4px solid var(--dark);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+            z-index: 10000;
+            max-width: 80%;
+            display: none;
+        }
+        
+        .modal-8bit h3 {
+            font-family: 'Press Start 2P', cursive;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .modal-8bit p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-8bit .btn {
+            margin-right: 1rem;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -502,12 +679,12 @@
                 margin-bottom: 1rem;
             }
             
-            h1 {
-                font-size: 2.2rem;
+            .header-text h1 {
+                font-size: 1.8rem;
             }
             
             .tagline {
-                font-size: 1.2rem;
+                font-size: 0.8rem;
             }
             
             .container {
@@ -540,8 +717,6 @@
             .pusheen-cat {
                 width: 60px;
                 height: 60px;
-                top: 10px;
-                right: 10px;
             }
         }
     </style>
@@ -560,7 +735,6 @@
     <header>
         <div class="header-bg"></div>
         <div class="header-content">
-            
             <img src="https://media.licdn.com/dms/image/v2/D4E03AQFrOjHClWz0ZA/profile-displayphoto-crop_800_800/B4EZgQ_ljmGYAI-/0/1752631762013?e=1756944000&v=beta&t=jyugghwgwXvE6XYL9RXZ5j6f7R5aTswvqHzWV7F2PKA" alt="Khai Kieu" class="profile-image">
             <div class="header-text">
                 <h1>Khai Kieu</h1>
@@ -572,7 +746,7 @@
     <main class="container">
         <section class="project-card">
             <div class="project-header">
-                <img src="https://cdn.discordapp.com/attachments/1318359060336087171/1402946771809996841/pngtree-cactus-pixel-art-png-image_6581983.png?ex=6895c37f&is=689471ff&hm=fa9d80d4d0512183670297492bb90c4ac3777aec067bb2e450bc708547875e15&">
+                <img src="https://cdn.discordapp.com/attachments/1318359060336087171/1402946771809996841/pngtree-cactus-pixel-art-png-image_6581983.png?ex=6895c37f&is=689471ff&hm=fa9d80d4d0512183670297492bb90c4ac3777aec067bb2e450bc708547875e15&" style="width: 40px; height: 40px;">
                 <h2 class="project-title">Recipe Site Traffic</h2>
             </div>
             <div class="project-content">
@@ -582,20 +756,35 @@
                     <div class="tech-stack">
                         <span class="tech-item">Python</span>
                         <span class="tech-item">SQL</span>
+                        <span class="tech-item">Pandas</span>
+                        <span class="tech-item">Matplotlib</span>
+                        <span class="tech-item">Scikit-learn</span>
                     </div>
                     
-                    <h3>Key Features:</h3>
-                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                        <li>Time series analysis of traffic patterns</li>
-                        <li>User engagement metrics visualization</li>
-                        <li>Content performance clustering</li>
-                        <li>Predictive modeling for traffic forecasting</li>
-                        <li>Recipe category performance analysis</li>
+                    <h3 style="font-family: 'Press Start 2P', cursive; font-size: 1rem; margin: 1.5rem 0 1rem;">Key Features:</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem; list-style-type: none;">
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--primary);">▸</span> Time series analysis of traffic patterns
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--primary);">▸</span> User engagement metrics visualization
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--primary);">▸</span> Content performance clustering
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--primary);">▸</span> Predictive modeling for traffic forecasting
+                        </li>
+                        <li style="margin-bottom: 0.5rem; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: var(--primary);">▸</span> Recipe category performance analysis
+                        </li>
                     </ul>
                 </div>
                 
-                <a href="https://github.com/Rohulk/RecipeSiteTraffic" class="btn" target="_blank">View on GitHub</a>
-                <a href="https://github.com/Rohulk/RecipeSiteTraffic/archive/refs/heads/main.zip" class="btn btn-outline">Download Project</a>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="https://github.com/Rohulk/RecipeSiteTraffic" class="btn" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/Rohulk/RecipeSiteTraffic/archive/refs/heads/main.zip" class="btn btn-outline">Download Project</a>
+                </div>
             </div>
         </section>
         
@@ -618,14 +807,14 @@
         <div class="education-container" id="educationContainer"></div>
         
         <section style="text-align: center; margin-top: 4rem; animation: fadeIn 1s ease-out;">
-            <h2 style="margin-bottom: 1.5rem;">About Me</h2>
-            <p style="max-width: 800px; margin: 0 auto;">
+            <h2 style="margin-bottom: 1.5rem; font-family: 'Press Start 2P', cursive; text-shadow: 2px 2px 0px var(--dark);">About Me</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
                 Computer scientist with a specialization in data science. Sent to earth to discover its beauty and the life it nurtured.
             </p>
         </section>
 
         <section class="connect-section">
-            <h2 style="margin-bottom: 1.5rem;">Let's Connect</h2>
+            <h2 style="margin-bottom: 1.5rem; font-family: 'Press Start 2P', cursive; text-shadow: 2px 2px 0px var(--dark);">Let's Connect</h2>
             <a href="https://www.linkedin.com/in/addictedtodata/" class="linkedin-link" target="_blank">
                 <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -635,8 +824,18 @@
         </section>
     </main>
     
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-8bit" id="modal8bit">
+        <h3>Hello World!</h3>
+        <p>Welcome to my pixelated portfolio! I'm Khai Kieu, a data science enthusiast with a passion for creative coding.</p>
+        <div style="display: flex; margin-top: 1.5rem;">
+            <button class="btn" id="modalClose">Continue</button>
+        </div>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Binary digits animation
             let lastTime = 0;
             const delay = 50; 
             
@@ -662,6 +861,7 @@
                 }, 1000);
             }
             
+            // Animated background circles
             const animatedBg = document.querySelector('.animated-bg');
             const colors = ['#4CAF50', '#8BC34A', '#FFC107', '#F6E05E', '#4299E1'];
             
@@ -689,7 +889,7 @@
             
             // Animate elements when they come into view
             const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.project-card, .certifications-panel');
+                const elements = document.querySelectorAll('.project-card, .certifications-panel, .education-panel');
                 
                 elements.forEach(element => {
                     const elementPosition = element.getBoundingClientRect().top;
@@ -704,25 +904,27 @@
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); 
             
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.pageYOffset;
-                const header = document.querySelector('header');
-                header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-            });
-            
+            // Pusheen cat animation
             const pusheenCat = document.querySelector('.pusheen-cat');
             
             function showPusheen() {
+                // Random position
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 100);
+                
+                pusheenCat.style.left = `${x}px`;
+                pusheenCat.style.top = `${y}px`;
                 pusheenCat.classList.add('visible');
+                
                 setTimeout(() => {
                     pusheenCat.classList.remove('visible');
                 }, 3000); 
             }
             
             setTimeout(showPusheen, 1000);
-            
             setInterval(showPusheen, 15000);
             
+            // Education panels
             const educationContainer = document.getElementById('educationContainer');
             
             const gsuPanel = document.createElement('section');
@@ -757,14 +959,31 @@
             educationContainer.appendChild(codepathPanel);
             
             setTimeout(() => {
+                gsuPanel.classList.add('visible');
                 setTimeout(() => {
-                    gsuPanel.classList.add('visible');
-                    
-                    setTimeout(() => {
-                        codepathPanel.classList.add('visible');
-                    }, 500);
-                }, 1000);
-            }, 0);
+                    codepathPanel.classList.add('visible');
+                }, 500);
+            }, 1000);
+            
+            // 8-bit modal
+            const modal = document.getElementById('modal8bit');
+            const overlay = document.getElementById('modalOverlay');
+            const closeBtn = document.getElementById('modalClose');
+            
+            setTimeout(() => {
+                modal.style.display = 'block';
+                overlay.style.display = 'block';
+            }, 1500);
+            
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            overlay.addEventListener('click', () => {
+                modal.style.display = 'none';
+                overlay.style.display = 'none';
+            });
         });
     </script>
 </body>
