@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF69B4; /* Pink color scheme */
+            --primary: #FF69B4; 
             --secondary: #FF8FAB; 
             --dark: #C9184A; 
             --light: #FFF0F3; 
@@ -342,6 +342,7 @@
         }
         
         .education-panel .project-content {
+            font-family: 'Press Start 2P', cursive;
             padding: 1rem;
             text-align: center;
         }
@@ -747,7 +748,6 @@
             </div>
         </section>
         
-        <!-- Certifications Panel -->
         <section class="certifications-panel">
             <h2>Certifications</h2>
             <div class="certifications-grid">
@@ -794,7 +794,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Binary digits animation
             let lastTime = 0;
             const delay = 50; 
             
@@ -820,7 +819,6 @@
                 }, 1000);
             }
             
-            // Animated background circles
             const animatedBg = document.querySelector('.animated-bg');
             const colors = ['#FF69B4', '#FF8FAB', '#FFD166', '#F6E05E', '#4299E1'];
             
@@ -863,11 +861,9 @@
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); 
             
-            // Pusheen cat animation
             const pusheenCat = document.querySelector('.pusheen-cat');
             
             function showPusheen() {
-                // Random position
                 const x = Math.random() * (window.innerWidth - 100);
                 const y = Math.random() * (window.innerHeight - 100);
                 
@@ -924,7 +920,6 @@
                 }, 500);
             }, 1000);
             
-            // 8-bit modal
             const modal = document.getElementById('modal8bit');
             const overlay = document.getElementById('modalOverlay');
             const closeBtn = document.getElementById('modalClose');
