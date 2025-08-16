@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4CAF50; 
-            --secondary: #8BC34A; 
-            --dark: #2E7D32; 
-            --light: #F1F8E9; 
-            --accent: #FFC107; 
+            --primary: #FF69B4; /* Changed from green to pink */
+            --secondary: #FF8FAB; 
+            --dark: #C9184A; 
+            --light: #FFF0F3; 
+            --accent: #FFD166; 
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
             --pixel-size: 4px;
         }
@@ -25,14 +25,10 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--light);
+            background-color: white; /* Changed to solid white */
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
         }
         
         .binary-digit {
@@ -107,6 +103,9 @@
             text-shadow: 4px 4px 0px var(--dark);
             letter-spacing: -1px;
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .header-text .tagline {
@@ -163,10 +162,6 @@
             transition: transform 0.8s ease, opacity 1.2s ease, box-shadow 0.3s ease;
             border: 4px solid var(--dark);
             position: relative;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
         }
         
         .project-card::before {
@@ -197,8 +192,8 @@
         }
         
         @keyframes pixelGlow {
-            0%, 100% { box-shadow: 0 0 0px rgba(76, 175, 80, 0.8); }
-            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+            0%, 100% { box-shadow: 0 0 0px rgba(255, 105, 180, 0.8); }
+            50% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
         }
         
         .project-header {
@@ -309,7 +304,7 @@
             height: 120px;
             object-fit: contain;
             margin-bottom: 0.5rem;
-            border: 2px solid var(--dark);
+            border: none; /* Removed the border */
             background: white;
             padding: 5px;
         }
@@ -546,7 +541,7 @@
         }
         
         .tech-item {
-            background: rgba(76, 175, 80, 0.1);
+            background: rgba(255, 105, 180, 0.1);
             color: var(--primary);
             padding: 0.3rem 0.8rem;
             border-radius: 4px;
@@ -560,7 +555,7 @@
         
         .tech-item:hover {
             transform: scale(1.1);
-            background: rgba(76, 175, 80, 0.2);
+            background: rgba(255, 105, 180, 0.2);
             box-shadow: 0 3px 0px var(--dark);
         }
         
@@ -667,6 +662,11 @@
             display: none;
         }
         
+        .heart-gif {
+            width: 40px;
+            height: 40px;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -718,6 +718,11 @@
                 width: 60px;
                 height: 60px;
             }
+            
+            .heart-gif {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
@@ -737,7 +742,7 @@
         <div class="header-content">
             <img src="https://media.licdn.com/dms/image/v2/D4E03AQFrOjHClWz0ZA/profile-displayphoto-crop_800_800/B4EZgQ_ljmGYAI-/0/1752631762013?e=1756944000&v=beta&t=jyugghwgwXvE6XYL9RXZ5j6f7R5aTswvqHzWV7F2PKA" alt="Khai Kieu" class="profile-image">
             <div class="header-text">
-                <h1>Khai Kieu</h1>
+                <h1>Khai Kieu <img src="https://media.tenor.com/EvBq1fBvyiwAAAAj/pixel-heart.gif" class="heart-gif" alt="Pixel Heart"></h1>
                 <p class="tagline">Data Science Addict</p>
             </div>
         </div>
@@ -863,7 +868,7 @@
             
             // Animated background circles
             const animatedBg = document.querySelector('.animated-bg');
-            const colors = ['#4CAF50', '#8BC34A', '#FFC107', '#F6E05E', '#4299E1'];
+            const colors = ['#FF69B4', '#FF8FAB', '#FFD166', '#F6E05E', '#4299E1'];
             
             for (let i = 0; i < 8; i++) {
                 const circle = document.createElement('div');
