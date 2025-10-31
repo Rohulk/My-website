@@ -219,7 +219,6 @@
             color: var(--dark);
         }
         
-        /* Certifications Panel */
         .certifications-panel {
             background: white;
             border-radius: 8px;
@@ -295,7 +294,6 @@
             text-shadow: 1px 1px 0px var(--dark);
         }
         
-        /* Education Panels */
         .education-container {
             display: flex;
             flex-wrap: wrap;
@@ -553,8 +551,56 @@
             height: 24px;
             fill: currentColor;
         }
+
+        .discord-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+        }
         
-        /* Pusheen Cat */
+        .password-input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-family: 'Press Start 2P', cursive;
+            background: white;
+            color: var(--dark);
+            box-shadow: 0 2px 0px var(--dark);
+        }
+        
+        .discord-btn {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: var(--primary);
+            box-shadow: 0 4px 0px var(--dark);
+            border: 2px solid var(--dark);
+            font-family: 'Press Start 2P', cursive;
+            width: 250px;
+            justify-content: center;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0px var(--dark);
+            background: var(--secondary);
+        }
+        
+        .discord-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        
         .pusheen-cat {
             position: fixed;
             width: 80px;
@@ -564,11 +610,11 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
+            animation: dance 2s ease-in-out infinite;
         }
         
         .pusheen-cat.visible {
             opacity: 1;
-            animation: wave 0.8s ease-in-out 3;
         }
         
         .pusheen-cat img {
@@ -577,13 +623,13 @@
             object-fit: contain;
         }
         
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg) translateY(0); }
-            25% { transform: rotate(10deg) translateY(-5px); }
-            75% { transform: rotate(-10deg) translateY(-5px); }
+        @keyframes dance {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-5px) rotate(-5deg); }
+            75% { transform: translateY(-10px) rotate(5deg); }
         }
         
-        /* 8-bit Modal */
         .modal-8bit {
             position: fixed;
             top: 50%;
@@ -687,6 +733,11 @@
             }
             
             .linkedin-link {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            
+            .discord-btn {
                 width: 100%;
                 margin: 0.5rem 0;
             }
@@ -794,6 +845,16 @@
                     Connect on LinkedIn
                 </a>
             </div>
+            <div class="discord-section">
+                <input type="password" class="password-input" placeholder="What's the secret code?" id="discordPassword">
+                <br>
+                <button class="discord-btn" id="discordBtn" onclick="window.open('https://guns.lol/soulconsumers', '_blank')">
+                    <svg class="discord-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </svg>
+                    Add me on Discord!
+                </button>
+            </div>
         </section>
     </main>
     
@@ -858,7 +919,6 @@
                 animatedBg.appendChild(circle);
             }
             
-            // Animate elements when they come into view
             const animateOnScroll = function() {
                 const elements = document.querySelectorAll('.project-card, .certifications-panel, .education-panel');
                 
@@ -893,7 +953,6 @@
             setTimeout(showPusheen, 1000);
             setInterval(showPusheen, 15000);
             
-            // Education panels
             const educationContainer = document.getElementById('educationContainer');
             
             const gsuPanel = document.createElement('section');
@@ -941,16 +1000,31 @@
             setTimeout(() => {
                 modal.style.display = 'block';
                 overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             }, 1500);
             
             closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
                 overlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
             });
             
             overlay.addEventListener('click', () => {
                 modal.style.display = 'none';
                 overlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            document.getElementById('discordPassword').addEventListener('input', function(e) {
+                const btn = document.getElementById('discordBtn');
+                const input = document.getElementById('discordPassword');
+                if (e.target.value === '3D7YZ') {
+                    btn.style.display = 'inline-flex';
+                    input.style.display = 'none';
+                } else {
+                    btn.style.display = 'none';
+                    input.style.display = 'inline-block';
+                }
             });
         });
     </script>
