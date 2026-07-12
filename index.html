@@ -639,6 +639,9 @@
     box-shadow: 0 4px 0px var(--dark);
     transition: all 0.3s ease;
 }
+.music-btn svg {
+    fill: white;
+}
 
 .music-btn:hover {
     transform: translateY(-3px);
@@ -780,7 +783,15 @@
     <source src="https://raw.githubusercontent.com/Rohulk/My-website/main/Knot%20Me.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicBtn" class="music-btn" onclick="toggleMusic()">Play Music</button>
+<button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+    <svg id="playIcon" viewBox="0 0 24 24" width="20" height="20">
+        <polygon points="6,4 20,12 6,20" fill="var(--primary)"/>
+    </svg>
+    <svg id="pauseIcon" viewBox="0 0 24 24" width="20" height="20" style="display:none;">
+        <rect x="5" y="4" width="5" height="16" fill="var(--primary)"/>
+        <rect x="14" y="4" width="5" height="16" fill="var(--primary)"/>
+    </svg>
+</button>
     
     <div class="animated-bg">
         <div class="circle"></div>
@@ -914,13 +925,16 @@
     <script>
         window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
-    const btn = document.getElementById('musicBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
     if (music.paused) {
         music.play();
-        btn.textContent = 'Pause Music';
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'inline';
     } else {
         music.pause();
-        btn.textContent = 'Play Music';
+        playIcon.style.display = 'inline';
+        pauseIcon.style.display = 'none';
     }
 };
         document.addEventListener('DOMContentLoaded', function() {
