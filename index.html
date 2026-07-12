@@ -623,6 +623,33 @@
             object-fit: contain;
         }
         
+        .music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--primary);
+    color: white;
+    border: 3px solid var(--dark);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0px var(--dark);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0px var(--dark);
+}
+
+.music-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0px var(--dark);
+}
+        
         @keyframes dance {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             25% { transform: translateY(-10px) rotate(5deg); }
@@ -745,9 +772,15 @@
     </style>
 </head>
 <body>
+    
     <div class="pusheen-cat">
         <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Pusheen_the_Cat.png" alt="Pusheen the Cat">
     </div>
+    <audio id="bgMusic" loop>
+    <source src="https://raw.githubusercontent.com/Rohulk/My-website/main/Knot%20Me.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" class="music-btn" onclick="toggleMusic()">Play Music</button>
     
     <div class="animated-bg">
         <div class="circle"></div>
@@ -879,6 +912,17 @@
     </div>
     
     <script>
+        window.toggleMusic = function() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    if (music.paused) {
+        music.play();
+        btn.textContent = 'Pause Music';
+    } else {
+        music.pause();
+        btn.textContent = 'Play Music';
+    }
+};
         document.addEventListener('DOMContentLoaded', function() {
             let lastTime = 0;
             const delay = 50; 
